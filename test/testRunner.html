@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mocha Tests</title>
+  <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+</head>
+
+<body>
+  <div id="mocha"></div>  
+  <script src="../node_modules/axios/dist/axios.js"></script>
+  <script src="../node_modules/xlsx/dist/jszip.js"></script>
+  <script src="../node_modules/xlsx/xlsx.js"></script>
+  <script src="../node_modules/mocha/mocha.js"></script>
+  <script src="../node_modules/chai/chai.js"></script>
+  <script src="../node_modules/requirejs/require.js"></script>
+  
+
+  <script>mocha.setup('bdd')</script>
+  <!-- <script>axios.get('https://api.github.com/users/codeheaven-io').then(function(response){console.log(response.status);});</script> -->
+  <script src="./test.js"></script>
+  <!-- <script data-main="./test.js" src="../node_modules/requirejs/require.js"></script> -->
+  
+  
+
+  <script>
+    mocha.run()
+  </script>
+
+
+</body>
+
+</html>
