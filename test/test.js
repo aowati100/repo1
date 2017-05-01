@@ -12,7 +12,7 @@ describe('suite', function(){
     this.timeout(5000);   
     before(function(done){
         if(typeof XMLHttpRequest !== 'undefined'){
-            require(['testModule'], 
+            require(['./testModule'], 
                 function(_mod) {                    
                     console.log('before fired');
                     mod = _mod;
