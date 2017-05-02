@@ -10,19 +10,8 @@ else{
 
 
 describe('suite', function(){
-    before(function(done){
-        console.log('before');
-        require(['./module2'], 
-            function(_mod) {                    
-                console.log('before fired');
-                mod = _mod;  
-                //if(typeof requirejs == 'undefined') {mocha.run();}
-                done();
-        });
-        
-    });
     it('case', function(done){
-        console.log('testing ' + mod.get());                
+        console.log('testing');                
         done();
     });
 });

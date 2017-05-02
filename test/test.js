@@ -24,10 +24,15 @@ describe('suite', function(){
             done();
         }
     });
-    it('case', function(done){
+    it('test a callback', function(done){
         mod.google(function(res){
             console.log(res);
             done();
         });        
-    });    
+    }); 
+    it('test a promise', function(){
+        return mod.gooPromise().then(function(data){
+            console.log(data);
+        });        
+    });        
 });
