@@ -30,7 +30,7 @@ describe('suite', function(){
             done();
         });        
     }); 
-    /*
+    
     it('testing a promise method', function(){
         return mod.testPromise().then(function(data){
             console.log(data);
@@ -41,5 +41,5 @@ describe('suite', function(){
             console.log(data);
         });        
     });
-    */               
+                   
 });
