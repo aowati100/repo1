@@ -45,9 +45,9 @@ function get(){
 
 function google(callback){
     if(typeof XMLHttpRequest !== 'undefined'){
-        axios.get('https://google.com').then(
+        //axios.get('https://google.com').then(
         //axios.get('https://api.github.com/users/codeheaven-io').then(
-        //axios.get('http://oss.sheetjs.com/js-xlsx/test_files/formula_stress_test_ajax.xlsx').then(
+        axios.get('http://oss.sheetjs.com/js-xlsx/test_files/formula_stress_test_ajax.xlsx').then(
         //axios.get('https://github.com/aowati100/repo1/raw/master/test/dummy.xlsx').then(            
             function(response){
                 callback(response.status);
