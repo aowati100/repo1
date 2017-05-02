@@ -24,13 +24,13 @@ describe('suite', function(){
             done();
         }
     });
-    it('test a callback', function(done){
+    it('testing a callback method', function(done){
         mod.google(function(res){
             console.log(res);
             done();
         });        
     }); 
-    it('test a promise', function(){
+    it('testing a promise method', function(){
         return mod.gooPromise().then(function(data){
             console.log(data);
         });        
