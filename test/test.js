@@ -39,5 +39,5 @@ describe('suite', function(){
         return mod.readExcel().then(function(data){
             console.log(data);
         });        
-    });           
+    });               
 });

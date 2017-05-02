@@ -45,8 +45,8 @@ function get(){
 
 function google(callback){
     if(typeof XMLHttpRequest !== 'undefined'){
-        axios.get('https://google.com').then(
-        //axios.get('https://api.github.com/users/codeheaven-io').then(
+        //axios.get('https://google.com').then(
+        axios.get('https://api.github.com/users/codeheaven-io').then(
         //axios.get('http://oss.sheetjs.com/js-xlsx/test_files/formula_stress_test_ajax.xlsx').then(
         //axios.get('https://github.com/aowati100/repo1/raw/master/test/dummy.xlsx').then(            
             function(response){
@@ -88,21 +88,28 @@ function testPromise(){
 }
 
 function readExcel(){ 
-    var fileName = './test/dummy.xlsx';
+    //var fileName = 'http://oss.sheetjs.com/js-xlsx/test_files/formula_stress_test_ajax.xlsx';
+    //var fileName = 'file://D:\JS\demo3\test\dummy.xlsx';
+    //var sheetName = 'Database';    
+    var fileName = "./dummy.xlsx";
     var sheetName = 'SheetOne';    
-    if(typeof XMLHttpRequest !== 'undefined'){
+    if(typeof XMLHttpRequest !== 'undefined'){        
         return new Promise(function(resolve, reject){
-            //XLSX = require('xlsx');
-            var workbook = XLSX.readFile(fileName);        
-            var worksheet = workbook.Sheets[sheetName];
-            var csv = XLSX.utils.sheet_to_csv(worksheet);
-            var arrRows = csv.split("\n");
-            for(var i = 0; i < arrRows.length; i++){
-                if(arrRows[i].length == 0){
-                    arrRows.splice(i,1);
-                }
-            }        
-            resolve(arrRows);            
+            axios.get(fileName, {
+                headers: {
+                    'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                }                
+            }).then(function(data){
+                var arr = new Array();
+                for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+                var bstr = arr.join("");
+                var workbook = XLSX.read(bstr, { type: "binary" });
+                var worksheet = workbook.Sheets[sheetName];
+                console.log("C");
+                var csv = XLSX.utils.sheet_to_csv(worksheet);
+                console.log(csv);
+                resolve();
+            });
         });
     }
     else{
