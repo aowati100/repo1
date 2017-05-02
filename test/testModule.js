@@ -10,9 +10,12 @@ if(typeof define !== 'undefined')
                     return callback(res);                    
                 });
             },
-            gooPromise: function(callback){
-                return gooPromise();
-            }            
+            testPromise: function(callback){
+                return testPromise();
+            },
+            readExcel: function(){
+                return readExcel();
+            }                        
         };
     });
 }
@@ -26,9 +29,12 @@ else if(typeof exports !== 'undefined') {
                 callback(res);
             });
         },
-        gooPromise: function(){            
-            return gooPromise();
-        }        
+        testPromise: function(){            
+            return testPromise();
+        },
+        readExcel: function(){
+            return readExcel();
+        }
     };    
 }
 
@@ -57,7 +63,7 @@ function google(callback){
     }
 }
 
-function gooPromise(){
+function testPromise(){
     if(typeof XMLHttpRequest !== 'undefined'){
         return new Promise(function(resolve, reject){
             axios.get('https://api.github.com/users/codeheaven-io').then(
@@ -78,5 +84,40 @@ function gooPromise(){
                 });
             }
         );
+    }
+}
+
+function readExcel(){ 
+    var fileName = './test/dummy.xlsx';
+    var sheetName = 'SheetOne';    
+    if(typeof XMLHttpRequest !== 'undefined'){
+        return new Promise(function(resolve, reject){
+            //XLSX = require('xlsx');
+            var workbook = XLSX.readFile(fileName);        
+            var worksheet = workbook.Sheets[sheetName];
+            var csv = XLSX.utils.sheet_to_csv(worksheet);
+            var arrRows = csv.split("\n");
+            for(var i = 0; i < arrRows.length; i++){
+                if(arrRows[i].length == 0){
+                    arrRows.splice(i,1);
+                }
+            }        
+            resolve(arrRows);            
+        });
+    }
+    else{
+        return new Promise(function(resolve, reject){
+            XLSX = require('xlsx');
+            var workbook = XLSX.readFile(fileName);        
+            var worksheet = workbook.Sheets[sheetName];
+            var csv = XLSX.utils.sheet_to_csv(worksheet);
+            var arrRows = csv.split("\n");
+            for(var i = 0; i < arrRows.length; i++){
+                if(arrRows[i].length == 0){
+                    arrRows.splice(i,1);
+                }
+            }        
+            resolve(arrRows);
+        });
     }
 }

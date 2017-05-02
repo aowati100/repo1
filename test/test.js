@@ -31,8 +31,13 @@ describe('suite', function(){
         });        
     }); 
     it('testing a promise method', function(){
-        return mod.gooPromise().then(function(data){
+        return mod.testPromise().then(function(data){
             console.log(data);
         });        
-    });        
+    }); 
+    it('testing an excel reader', function(){
+        return mod.readExcel().then(function(data){
+            console.log(data);
+        });        
+    });           
 });
